@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js ar - cones</title>
+		<title>Brain AR with Threejs</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link type="text/css" rel="stylesheet" href="base.css">
@@ -9,7 +9,7 @@
 	<body>
 
 		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> ar - cones<br/>
+			<a href="https://threejs.org" target="_blank" rel="noopener">Brain in AR</a><br/>
 		</div>
 
 		<script type="module">
@@ -52,7 +52,7 @@
 
 				//
 
-				// test with brain
+				// test with vtk brain mesh
 				const loader = new VTKLoader();
 				loader.load("./resources/rh.vtk", function (geometry) {
 					geometry.center();
@@ -60,12 +60,25 @@
 					console.log(geometry)
 					const material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
 					const mesh = new THREE.Mesh(geometry, material);
-					mesh.position.set( 0, 0, -2 ).applyMatrix4( controller.matrixWorld );
+					mesh.position.set( 0, 0, -2 ).applyMatrix4( controller.matrixWorld ); // position the mesh
 					mesh.quaternion.setFromRotationMatrix( controller.matrixWorld );
 					mesh.scale.multiplyScalar(0.002);
+					//Rotating mesh by 90 degree in X axis.
+					mesh.rotateX( -Math.PI / 2 );
 					scene.add( mesh );
 				});
 
+				// // if brain mesh is stl file
+				// // STL
+				// const loader1 = new THREE.STLLoader();
+				// loader1.load(window.filePath, function ( geometry ) {
+				// 	geometry.center()
+				// 	const material = new THREE.MeshLambertMaterial({color: 0x55B663});
+				// 	stlMesh = new THREE.Mesh(geometry, material);
+				// 	camera.position.z = geometry.boundingBox.size().z+300
+				// 	//stlMesh.translateY()
+				// 	scene.add(stlMesh);
+				// });
 
 				// var geometry = new THREE.CylinderBufferGeometry( 0, 0.05, 0.2, 32 ).rotateX( Math.PI / 2 );
 
@@ -79,10 +92,16 @@
 				//
 				// }
 
+
+				controller.addEventListener( 'connected', ( event ) => {
+
+					console.log( event.data.handedness );
+
+				} );
+
 				controller = renderer.xr.getController( 0 );
 				// controller.addEventListener( 'select', onSelect );
 				scene.add( controller );
-
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
