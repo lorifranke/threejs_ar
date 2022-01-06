@@ -60,29 +60,28 @@
 					console.log(geometry)
 					const material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
 					const mesh = new THREE.Mesh(geometry, material);
-					// mesh.position.set( - 0.075, 0.005, 0 );
-					mesh.scale.multiplyScalar(0.2);
+					mesh.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
+					mesh.quaternion.setFromRotationMatrix( controller.matrixWorld );
+					mesh.scale.multiplyScalar(0.002);
 					scene.add( mesh );
 				});
 
 
 				// var geometry = new THREE.CylinderBufferGeometry( 0, 0.05, 0.2, 32 ).rotateX( Math.PI / 2 );
 
-				function onSelect() {
-
-					var material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-					var mesh = new THREE.Mesh( geometry, material );
-					mesh.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
-					mesh.quaternion.setFromRotationMatrix( controller.matrixWorld );
-					scene.add( mesh );
-
-				}
+				// function onSelect() {
+				//
+				// 	var material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+				// 	var mesh = new THREE.Mesh( geometry, material );
+				// 	mesh.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
+				// 	mesh.quaternion.setFromRotationMatrix( controller.matrixWorld );
+				// 	scene.add( mesh );
+				//
+				// }
 
 				controller = renderer.xr.getController( 0 );
-				controller.addEventListener( 'select', onSelect );
+				// controller.addEventListener( 'select', onSelect );
 				scene.add( controller );
-
-
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
