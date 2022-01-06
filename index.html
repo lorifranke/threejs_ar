@@ -92,13 +92,6 @@
 				//
 				// }
 
-
-				controller.addEventListener( 'connected', ( event ) => {
-
-					console.log( event.data.handedness );
-
-				} );
-
 				controller = renderer.xr.getController( 0 );
 				// controller.addEventListener( 'select', onSelect );
 				scene.add( controller );
