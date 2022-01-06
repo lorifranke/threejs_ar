@@ -1,0 +1,26 @@
+{
+  "name": "threejs_ar",
+  "version": "1.0.0",
+  "homepage": "https://github.com/lorifranke/threejs_ar/",
+  "private": true,
+  "dependencies": {
+    "@kitware/vtk.js": "^21.4.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "three": "^0.136.0",
+    "web-vitals": "^2.1.2"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorifranke/threejs_ar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorifranke/threejs_ar/issues"
+  }
+}
